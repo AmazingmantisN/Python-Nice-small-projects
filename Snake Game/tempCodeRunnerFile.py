@@ -1,0 +1,1 @@
+290 or snake.head.ycor() < -290 or snake.head.ycor() > 290:
