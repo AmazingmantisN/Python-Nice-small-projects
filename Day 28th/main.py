@@ -1,6 +1,21 @@
 from tkinter import *
 from PIL import Image, ImageTk
 from timer import TimerManager
+
+
+import os
+import sys
+
+
+def resource_path(relative_path):
+    """Gets absolute path to resource, works for dev and for PyInstaller."""
+    if hasattr(sys, "_MEIPASS"):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
+
+# --- REPLACE LINE 13 WITH THIS ---
+bg_path = resource_path("Pomodorobgpic.png")
 # ---------------------------- CONSTANTS ------------------------------- #
 from constants import *
 # ---------------------------- UI SETUP ------------------------------- #
@@ -10,7 +25,7 @@ window.title("Pomodoro")
 window.config(bg="#CF4173")
 
 # Load original image using PIL
-bg_path = r"C:\Programming\Python Udemy course\Day 28th\Pomodorobgpic.png"
+          #bg_path = r"C:\Programming\Python Udemy course\Day 28th\Pomodorobgpic.png"
 bg_original = Image.open(bg_path)
 bg_pic = ImageTk.PhotoImage(bg_original)
 
@@ -35,7 +50,7 @@ canvas.create_text(
 #tickmark
 text = "✓"
 canvas.create_text(
-    150,190, text=text, font=("BernardMTCondensed", 20, "bold"), fill="#023A19"
+    150,180, text=text, font=("BernardMTCondensed", 20, "bold"), fill="#023A19"
 )
 #Buttons
 start_button = Button(
@@ -111,15 +126,16 @@ long_break_btn.place(x=220, y=10)
 canvas.pack()
 
 
-# Background resizing function
-# def resize_background(event):
-#     if event.width > 1 and event.height > 1:
-#         resized = bg_original.resize(
-#             (event.width, event.height), Image.Resampling.LANCZOS
-#         )
-#         new_pic = ImageTk.PhotoImage(resized)
-#         background_label.config(image=new_pic)
-#         background_label.image = new_pic
+#Background resizing function
+
+def resize_background(event):
+    if event.width > 1 and event.height > 1:
+        resized = bg_original.resize(
+            (event.width, event.height), Image.Resampling.LANCZOS
+        )
+        new_pic = ImageTk.PhotoImage(resized)
+        background_label.config(image=new_pic)
+        background_label.image = new_pic
 
 
 

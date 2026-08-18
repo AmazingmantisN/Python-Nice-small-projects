@@ -84,5 +84,8 @@ class TimerManager:
           self.timer = None
       self.current_mode = "work"    
       self.canvas.itemconfig(self.text_id, text="00:00")
+
+
+
     
     
